@@ -27,20 +27,20 @@ Statement: The purpose of this repo is just to keep track of the progression of 
         * Libraries of GP implementation (todo)
 2. Statistical Concepts
     - Likelihood (todo)
-     * Maximum Likelihood Estimation (MLE)
-     * Fisher Information & Cramer-Rao Inequality
-     * Newton-Raphson Method & Fisher Scoring Method
-     * Expectation-Maximization (EM) algorithm
-     * Generalized Likelihood Ratio
+      * Maximum Likelihood Estimation (MLE)
+      * Fisher Information & Cramer-Rao Inequality
+      * Newton-Raphson Method & Fisher Scoring Method
+      * Expectation-Maximization (EM) algorithm
+      * Generalized Likelihood Ratio
     - Monte Carlo Sampling
-     * Resampling & Bootstrap method
-     * Metropolis Hastings Algorithm
-     * Gibbs Sampling Algorithm
+      * Resampling & Bootstrap method
+      * Metropolis Hastings Algorithm
+      * Gibbs Sampling Algorithm
     - Bayesian Statistics (todo)
-     * Normal Model
-     * Normal Linear Model
-     * Priors & Conjugacy
-     * Bayesian Model Comparison
+      * Normal Model
+      * Normal Linear Model
+      * Priors & Conjugacy
+      * Bayesian Model Comparison
 3. Unsupervised ML Algorithms: (todo)
 4. Reinforcement Learning: (todo)
 5. Clustering Algorithms: (todo)
