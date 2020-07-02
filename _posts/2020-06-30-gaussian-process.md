@@ -98,10 +98,10 @@ $$p(\mathbf{f}|\mathbf{X})$$ in combination with the assumption of modeling the 
   \begin{split}
   p(\mathbf{f}^*|\mathbf{X}^*,\mathbf{X},\mathbf{y}) & = \int{p(\mathbf{f}^*,\mathbf{f}|\mathbf{X}^*,\mathbf{X},\mathbf{y})}d\mathbf{f}{\hskip 4em}\text{(law of total probability)} \\
   & = \int{p(\mathbf{f}^*|\mathbf{f},\mathbf{X}^*,\mathbf{X},\mathbf{y})p(\mathbf{f}|\mathbf{X}^*,\mathbf{X},\mathbf{y})}d\mathbf{f} {\hskip 2em} \text{(chain rule)}\\
-  & = \int{p(\mathbf{f}^*|\mathbf{f},\mathbf{X}^*)p(\mathbf{f}|\mathbf{X}^*,\mathbf{X},\mathbf{y})}d\mathbf{f} {\hskip 2em}\\
-  & (\mathbf{X} \text{ and } \mathbf{y} \text{ remain constant irrespective of } \mathbf{f} \text{. These are thus independent of } \mathbf{f^*} )\\
-  & = \int{p(\mathbf{f}^*|\mathbf{f},\mathbf{X}^*)\underbrace{p(\mathbf{f}|\mathbf{X},\mathbf{y})}_\text{Posterior distribution of f}}d\mathbf{f} {\hskip 2em}(\mathbf{X}^* \text{ does not depend on } \mathbf{f}) \\
-  & = \int{\underbrace{p(\mathbf{f}^*|\mathbf{f},\mathbf{X}^*)}_\text{Part I}\underbrace{p(\mathbf{f}|\mathbf{X}, \mathbf{y})}_\text{Part II}}d\mathbf{f} {\hskip 7cm}(3)\\
+  & = \int{p(\mathbf{f}^*|\mathbf{f},\mathbf{X}^*,\mathbf{X})p(\mathbf{f}|\mathbf{X}^*,\mathbf{X},\mathbf{y})}d\mathbf{f} {\hskip 2em}\\
+  & (\mathbf{y} \text{ remains constant irrespective of } \mathbf{f} \text{. Thus, if } \mathbf{f} \text{ is given, the presence of } \mathbf{y} \text{ is unnecessary})\\
+  & = \int{p(\mathbf{f}^*|\mathbf{f},\mathbf{X}^*,\mathbf{X})\underbrace{p(\mathbf{f}|\mathbf{X},\mathbf{y})}_\text{Posterior distribution of f}}d\mathbf{f} {\hskip 2em}(\mathbf{X}^* \text{ does not depend on } \mathbf{f}) \\
+  & = \int{\underbrace{p(\mathbf{f}^*|\mathbf{f},\mathbf{X}^*,\mathbf{X})}_\text{Part I}\underbrace{p(\mathbf{f}|\mathbf{X}, \mathbf{y})}_\text{Part II}}d\mathbf{f} {\hskip 7cm}(3)\\
   & = \underbrace{\mathcal{N}(\mathbf{f}^*|\boldsymbol{\mu}^*, \boldsymbol{\Sigma}^*)}_\text{Part III}\\
   \end{split}
   $$
@@ -134,9 +134,10 @@ According to $$\underbrace{\text{Part II}}$$ in Equation $$\text{(3)}$$,
 <center>
 $$
 \begin{split}
-    p(\mathbf{f}|\mathbf{X},\mathbf{y}) & \propto \underbrace{p(\mathbf{y}|\mathbf{X}, \mathbf{f})}_{Likelihood} \underbrace{p(\mathbf{f})}_{Prior}\\
-    & = p(\mathbf{y}|\mathbf{f}) p(\mathbf{f}|\mathbf{X}) \\
-    & (\mathbf{X} \text{ does not depend on } p(\mathbf{y}|\mathbf{f}, \mathbf{X}) \text{ and } p(\mathbf{f}) \text{ follows the definition of GPs prior})\\
+    p(\mathbf{f}|\mathbf{X},\mathbf{y})p(\mathbf{X}, \mathbf{y}) & = p(\mathbf{y}|\mathbf{X}, \mathbf{f}) p(\mathbf{X}, \mathbf{f}) \hskip{2em} (\text{Bayesian Theorem})\\
+    \Leftrightarrow p(\mathbf{f}|\mathbf{X},\mathbf{y})p(\mathbf{X}, \mathbf{y}) & = p(\mathbf{y}|\mathbf{X}, \mathbf{f}) p(\mathbf{f}|\mathbf{X}) p(\mathbf{X})\\
+    \Rightarrow p(\mathbf{f}|\mathbf{X},\mathbf{y}) & \propto \underbrace{p(\mathbf{y}|\mathbf{X}, \mathbf{f})}_{Likelihood} \underbrace{p(\mathbf{f}|\mathbf{X})}_{Prior}\\
+    & (p(\mathbf{f}|\mathbf{X}) \text{ follows the definition of GPs prior})\\
     & \propto exp(-\frac{(\mathbf{y} - \mathbf{f})^{T}\sigma^2_y\mathbf{I}(\mathbf{y} - \mathbf{f})}{2} -\frac{\mathbf{f}^{T}\mathbf{K}^{-1}_{f}\mathbf{f}}{2})\\
     & \propto exp(-\frac{\mathbf{f}^{T}(\mathbf{K}^{-1}_{f} + \sigma^2_y\mathbf{I})\mathbf{f} - 2\mathbf{f}^{T}\sigma^2_y\mathbf{I}\mathbf{y}}{2})\\
     & = exp(-\frac{\mathbf{f}^{T}(\mathbf{K}^{-1}_{f} + \sigma^2_y\mathbf{I})\mathbf{f} - 2\mathbf{f}^{T}(\mathbf{K}^{-1}_{f} + \sigma^2_y\mathbf{I})(\mathbf{K}^{-1}_{f} + \sigma^2_y\mathbf{I})^{-1}\sigma^2_y\mathbf{I}\mathbf{y}}{2})\\

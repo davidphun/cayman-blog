@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-tagline: A person who is eager to see what he can do in the future.
+tagline: A person who is making progress everyday and eager to see the future.
 permalink: /about.html
 ref: about
 order: 0
