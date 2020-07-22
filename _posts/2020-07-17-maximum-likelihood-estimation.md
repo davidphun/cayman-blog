@@ -4,7 +4,6 @@ title: "Maximum Likelihood Estimation"
 ---
 
 ## Introduction
-
 The goal of this topic is to introduce what does Maximum Likelihood Estimation (MLE) in statistics mean and the application of this method as well as the merits & demerits of this approach.
 
 * Regarding the first part, the aim is to explain what is the difference between a probability density function and a likelihood function and some live illustrations for likelihood functions.
