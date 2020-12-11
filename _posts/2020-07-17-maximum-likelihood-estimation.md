@@ -615,7 +615,7 @@ Note that the function $$L_D(\boldsymbol\beta)$$ is of the form of the least squ
 
 Another way to obtain optimal $$\boldsymbol\beta$$ for $$L_D(\boldsymbol\beta)$$ is to tackle this problem by geometry argument. Specifically, we want to find $$\boldsymbol\beta$$ such that $$\mathbf{X}\boldsymbol\beta$$ is as close to $$\mathbf{y}$$ as possible with fixed $$\mathbf{X}$$. In geometrical perspective, the closest $$\mathbf{X}\boldsymbol\beta$$ to $$\mathbf{y}$$ is indeed the the projection of $$\mathbf{y}$$ onto the vector space $$\mathbf{X}$$. For the ease of interpretation, the image below illustrates why $$\mathbf{X}\boldsymbol\beta = \text{proj}_{\mathbf{X}}(\mathbf{y})$$ is the closest distance between $$\mathbf{y}$$ and $$\mathbf{X}\boldsymbol\beta$$.
 
-$$\hskip{10em}$$![projection-of-y-onto-X](/blog/assets/mle_projection_of_y_onto_X.PNG)<br>
+$$\hskip{10em}$$![projection-of-y-onto-subspace-x](/blog/assets/mle_projection_of_y_onto_subspace_x.png)<br>
 <div style="display:block; text-align:center">
 <i>Figure 1.</i> $$\mathbf{Xh}$$ is the projection of $$\mathbf{y}$$ onto vector space $$\mathbf{X}$$, and $$\mathbf{Xi}$$ or $$\mathbf{Xj}$$ are other candidates of $$\mathbf{X}\boldsymbol\beta$$
 </div>
