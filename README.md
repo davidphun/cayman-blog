@@ -16,7 +16,7 @@ Statement: The purpose of this repo is just to keep track of the progression of 
         * Difference between Frequentist approach & Bayesian approach
         * Likelihood & Maximum a Posteriori & Posterior Predictive declaration of Linear Regression
         * Examples of tunning parameters of posterior distribution via Metropolis sampling & NUTS sampling (almost done)
-   - Gaussian Process (done
+   - Gaussian Process (done)
     * Introduction (done)
     * Gaussian Process definition & mathematical derivation (done)
     * Implementation

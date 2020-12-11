@@ -207,9 +207,8 @@ where,
     $$
 </center>
 
-Step <b>2</b>. Choose a numerical method to estimate $$\alpha$$ & $$\beta$$.<br> 
-
-    Since taking the 2nd derivative of $$l(\alpha, \beta; \mathbf{x})$$ is feasible, it is therefore a reasonable choice to choose $$\text{Newton-Raphson}$$ method as a way to find the roots of the Equations $$(4)$$ & $$(5)$$ (More detail about why this method works could be found <a href="#">here</a>).
+Step <b>2</b>. Choose a numerical method to estimate $$\alpha$$ & $$\beta$$.<br><br>
+Since taking the 2nd derivative of $$l(\alpha, \beta; \mathbf{x})$$ is feasible, it is therefore a reasonable choice to choose $$\text{Newton-Raphson}$$ method as a way to find the roots of the Equations $$(4)$$ & $$(5)$$ (More detail about why this method works could be found <a href="#">here</a>).
 Step <b>3</b>. Evaluate the 2nd order gradient of $$l(\alpha, \beta; \mathbf{x})$$:
 <center>
     $$
