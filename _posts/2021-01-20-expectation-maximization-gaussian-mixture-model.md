@@ -16,7 +16,8 @@ $$
 $$
 </center>
 where,<br>
-<p style="margin-left: 40px"> $$\pi_z$$ is the prior probability that a random variable $$X$$ could possibly be Gaussian distributed with $$\mathcal{N}(\boldsymbol\mu_z, \Sigma_z)$$, which corresponds to the class/cluster $$z$$.
+<p style="margin-left: 40px"> $$\pi_z$$ is the prior probability that a random variable $$X$$ could possibly be Gaussian distributed with $$\mathcal{N}(\boldsymbol\mu_z, \Sigma_z)$$, which corresponds to the class/cluster $$z$$.<br>
+And $$\pi_1, \pi_2, $$ and $$\pi_3$$ are under the constraint: $$\pi_1 + \pi_2 + \pi_3 = 1$$
 </p>
 
 ### Initialize data points for the corresponding clusters
@@ -37,12 +38,10 @@ $$
 $$
 </center>
 $$\Rightarrow$$ The procedure to generate samples corresponding to the given distribution can be described in the following 2 steps:<br>
-<p style="margin-left: 40px">
-1. The cluster $$C_i$$, whose the new data point $$X_i$$ will be assigned, can be simulated by 
-<center>$$C_i \sim Multinomial(N=1, \boldsymbol{p} = (0.5, 0.25, 0.25))$$</center>
-2. Update the data for the data point $$X_i$$ from the appropriate distribution, whose class should be equivalent to the class assigned to $$X_i$$ given in Step 1 via 
-<center>$$X_i \sim \mathcal{N}(\boldsymbol{\mu}_{C_i}, \boldsymbol{\Sigma}_{C_i})$$</center>
-</p>
+
+1. The cluster $$C_i$$ to which the new data point $$X_i$$ will be assigned can be simulated by <center>$$C_i \sim Multinomial(N=1, \boldsymbol{p} = (0.5, 0.25, 0.25))$$</center>
+2. Update the data for the data point $$X_i$$ from the appropriate distribution, whose class should be equivalent to the class assigned to $$X_i$$ given in Step 1 via <center>$$X_i \sim \mathcal{N}(\boldsymbol{\mu}_{C_i}, \boldsymbol{\Sigma}_{C_i})$$</center>
+
 
 ```python
 ## Importing necessary packages
@@ -200,6 +199,17 @@ Since the EM algorithm requires the specification of the complete-data likelihoo
 <center>
 $$
     L(\boldsymbol{\theta}|\mathbf{x}, z) = \pi_z\mathcal{N}(\boldsymbol{\mu}_z, \boldsymbol{\Sigma}_z)
+$$
+</center>
+* Explain:
+<center>
+$$
+\begin{split}
+    L(\boldsymbol{\theta}|\mathbf{x}) &= f(\mathbf{x}|\boldsymbol{\theta}) \\
+    &= \sum_z f(\mathbf{x}, z|\boldsymbol{\theta}) \hskip{4em} \text{(Law of Total Probability)} \\
+    &= \underbrace{\pi_1 * \mathcal{N}(\boldsymbol{\mu}_1, \Sigma_1)} + \underbrace{\pi_2 * \mathcal{N}(\boldsymbol{\mu}_2, \Sigma_2)} + \underbrace{\pi_3 * \mathcal{N}(\boldsymbol{\mu}_3, \Sigma_3)} \hskip{4em} \text{(Based on Equation (1))} \\
+    &\Rightarrow L(\boldsymbol{\theta}|\mathbf{x}, z) = \pi_z * \mathcal{N}(\boldsymbol{\mu}_z, \Sigma_z) 
+\end{split}
 $$
 </center>
 $$\Rightarrow$$ the log complete-data likelihood is basically:
