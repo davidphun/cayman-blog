@@ -349,38 +349,38 @@ In this section, we shall not discuss the way to assess whether the MLE estimato
 Therefore, it is better to set another example to demonstrate how CRLB works.
 
 Suppose a random vector $$\mathbf{X} = (X_1, X_2, ..., X_n)^T \overset{iid}{\sim} \mathcal{N}(\mu, \sigma^2)$$ <br>
-Given the fact that the vector $$\mathbf{x} = (x_1, x_2, ..., x_{n})^T$$ is one realization of the vector $$\mathbf{X}$$ <br>
+Given the fact that the vector $$\mathbf{x} = (x_1, x_2, ..., x_{N})^T$$ is one realization of the vector $$\mathbf{X}$$ <br>
 $$\Rightarrow$$ The MLE estimator of $$\mu$$, which could be obtained by solving the derivative of $$l(\mu, \sigma^2; \mathbf{x})$$ w.r.t $$\mu$$, is going to be:<br>
-<center>$$\hat{\mu} = \bar{x} = \frac{\sum_{i=1}^{n}x_i}{n}$$</center>
+<center>$$\hat{\mu} = \bar{x} = \frac{\sum_{i=1}^{N}x_i}{N}$$</center>
 Similarly, the MLE estimator of $$\sigma^2$$ is of the form:<br>
-<center>$$\hat{\sigma}^2 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n}$$</center>
+<center>$$\hat{\sigma}^2 = \frac{\sum_{i=1}^{N}(x_i - \bar{x})^2}{N}$$</center>
 However, the $$\hat{\sigma}^2$$ above is a biased estimator, that is, $$E[\hat{\sigma}^2] \neq \sigma^2$$ <br>
 Proof:
 <center>
     $$
     \begin{split}
-        E[\hat{\sigma}^2] & = E[\frac{\sum_{i=1}^{n}(X_i - \bar{X})^2}{n}] \\
-        & = E[\frac{\sum_{i=1}^{n}X_i^2 - 2\overbrace{X_i\bar{X}}^{(6)} + \overbrace{\bar{X}^2}^{(7)}}{n}]
+        E[\hat{\sigma}^2] & = E[\frac{\sum_{i=1}^{N}(X_i - \bar{X})^2}{N}] \\
+        & = E[\frac{\sum_{i=1}^{N}X_i^2 - 2\overbrace{X_i\bar{X}}^{(6)} + \overbrace{\bar{X}^2}^{(7)}}{N}]
     \end{split}
     $$
 </center>
 Consider $$(6)$$:
-<center>$$X_i\bar{X} = \frac{X_1X_i + X_2X_i + ... + X_i^2 + ... + X_nX_i}{n} = \frac{X_i^2}{n} + \frac{(n-1)X_iX_j}{n} \hskip{2em} (\forall i \neq j)  \tag{*}$$</center>
+<center>$$X_i\bar{X} = \frac{X_1X_i + X_2X_i + ... + X_i^2 + ... + X_nX_i}{N} = \frac{X_i^2}{N} + \frac{(N-1)X_iX_j}{N} \hskip{2em} (\forall i \neq j)  \tag{*}$$</center>
 Consider $$(7)$$:
-<center>$$\bar{X}^2 = \underbrace{\frac{X_1^2 + X_2^2 + ... + X_n^2}{n^2}}_{\frac{nX_i^2}{n^2}} + \frac{(n^2 - n)X_iX_j}{n^2} \hskip{2em} (\forall i \neq j) \tag{**}$$</center>
+<center>$$\bar{X}^2 = \underbrace{\frac{X_1^2 + X_2^2 + ... + X_n^2}{N^2}}_{\frac{nX_i^2}{N^2}} + \frac{(N^2 - N)X_iX_j}{N^2} \hskip{2em} (\forall i \neq j) \tag{**}$$</center>
 <center>
     $$ 
     \begin{split}
-        (*), (**) \Rightarrow E[\hat{\sigma}^2] & = E\frac{\sum_{i=1}^{n}\frac{(n^2-n)X_i^2}{n^2} - \frac{(n^2 - n)X_iX_j}{n^2}}{n} \\
-        & = \frac{\sum_{i=1}^{n}\frac{(n^2-n)E[X_i^2]}{n^2} - \frac{(n^2 - n)E[X_iX_j]}{n^2}}{n} \hskip{2em} \text{(Linear property of expectation)}\\
-        & = \frac{\sum_{i=1}^{n}\frac{(n^2-n)(\sigma^2 + \mu^2)}{n^2} - \frac{(n^2 - n)E[X_i]E[X_j]}{n^2}}{n} \hskip{2em} \text{(Because } i \neq j, \forall i, j \text{ and } X_i \text{ & } X_j \text{ are independent)} \\
-        & = \frac{\sum_{i=1}^{n}\frac{(n^2-n)(\sigma^2 + \mu^2)}{n^2} - \frac{(n^2 - n)\mu^2}{n^2}}{n} \\
-        & = \frac{\sum_{i=1}^{n}\frac{(n^2-n)\sigma^2}{n^2}}{n} \\
-        & = \frac{(n-1)\sigma^2}{n} \neq \sigma^2
+        (*), (**) \Rightarrow E[\hat{\sigma}^2] & = E\frac{\sum_{i=1}^{N}\frac{(N^2-N)X_i^2}{N^2} - \frac{(N^2 - N)X_iX_j}{N^2}}{N} \\
+        & = \frac{\sum_{i=1}^{N}\frac{(N^2-N)E[X_i^2]}{N^2} - \frac{(N^2 - N)E[X_iX_j]}{N^2}}{N} \hskip{2em} \text{(Linear property of expectation)}\\
+        & = \frac{\sum_{i=1}^{N}\frac{(N^2-N)(\sigma^2 + \mu^2)}{N^2} - \frac{(N^2 - N)E[X_i]E[X_j]}{N^2}}{N} \hskip{2em} \text{(Because } i \neq j, \forall i, j \text{ and } X_i \text{ & } X_j \text{ are independent)} \\
+        & = \frac{\sum_{i=1}^{N}\frac{(N^2-N)(\sigma^2 + \mu^2)}{N^2} - \frac{(N^2 - N)\mu^2}{N^2}}{N} \\
+        & = \frac{\sum_{i=1}^{N}\frac{(N^2-N)\sigma^2}{N^2}}{N} \\
+        & = \frac{(N-1)\sigma^2}{N} \neq \sigma^2
     \end{split}\\
     \begin{split}
-    & \Rightarrow \text{To make the sample variance estimator unbiased, dividing } \sum_{i=1}^{n}(X_i - \bar{X})^2 \text{ by } n-1 \text{ instead of } n \\
-    & \Rightarrow \text{Unbiased sample variance estimator: }\hat{\sigma}^2 = \frac{\sum_{i=1}^{n}(X_i - \bar{X})^2}{n-1}
+    & \Rightarrow \text{To make the sample variance estimator unbiased, dividing } \sum_{i=1}^{N}(X_i - \bar{X})^2 \text{ by } N-1 \text{ instead of } N \\
+    & \Rightarrow \text{Unbiased sample variance estimator: }\hat{\sigma}^2 = \frac{\sum_{i=1}^{N}(X_i - \bar{X})^2}{N-1}
     \end{split}
     $$
 </center>
@@ -415,18 +415,18 @@ Knowing the fact that the Pearson correlation of $$S(\theta)$$ & $$T(\mathbf{x})
 It remains to show that $$Cov(S, T)$$ is indeed the derivative of $$g(\theta) = E[T(\mathbf{x})]$$ w.r.t $$\theta$$ under regularity condition (Hint: $$Cov(S, T) = E[ST] - \underbrace{E[S]}_{0}E[T]$$). Consequently, 
 <center>$$Cov(S, T)^2 = g'(\theta)^2$$</center>
 
-### CRLB for the estimator of $$\mu$$: $$\hat{\mu} = \frac{\sum_{i=1}^{n}x_i}{n}$$
+### CRLB for the estimator of $$\mu$$: $$\hat{\mu} = \frac{\sum_{i=1}^{N}x_i}{N}$$
 
-Since $$\mathbf{x} \overset{iid}{\sim} \mathcal{N}(\mu, \sigma^2) \Rightarrow l(\mu, \sigma^2; \mathbf{x}) = -\frac{n}{2}ln(2\pi) -\frac{n}{2}ln(\sigma^2) - \sum_{i=1}^{n}\frac{(x_i - \mu)^2}{2\sigma^2}$$
+Since $$\mathbf{x} \overset{iid}{\sim} \mathcal{N}(\mu, \sigma^2) \Rightarrow l(\mu, \sigma^2; \mathbf{x}) = -\frac{N}{2}ln(2\pi) -\frac{N}{2}ln(\sigma^2) - \sum_{i=1}^{N}\frac{(x_i - \mu)^2}{2\sigma^2}$$
 <center>
     $$
     \Rightarrow \begin{cases}
-        \frac{dl(\mu, \sigma^2; \mathbf{x})}{d\mu} = \frac{\sum_{i=1}^{n}(x_i - \mu)}{\sigma^2} \\
-        \frac{d^2l(\mu, \sigma^2; \mathbf{x})}{d\mu^2} = -\frac{n}{\sigma^2}
+        \frac{dl(\mu, \sigma^2; \mathbf{x})}{d\mu} = \frac{\sum_{i=1}^{N}(x_i - \mu)}{\sigma^2} \\
+        \frac{d^2l(\mu, \sigma^2; \mathbf{x})}{d\mu^2} = -\frac{N}{\sigma^2}
     \end{cases}\\
     $$
     $$
-    \Rightarrow I(\mu) = E[-\frac{d^2l(\mu, \sigma^2; \mathbf{x})}{d\mu^2}] = \frac{n}{\sigma^2} \tag{8}
+    \Rightarrow I(\mu) = E[-\frac{d^2l(\mu, \sigma^2; \mathbf{x})}{d\mu^2}] = \frac{N}{\sigma^2} \tag{8}
     $$
 </center>
 $$\rightarrow$$ Taking the expectation of $$\hat{\mu} = T(\mathbf{x})$$ w.r.t $$\mu$$ yields: <br>
@@ -434,8 +434,8 @@ $$\rightarrow$$ Taking the expectation of $$\hat{\mu} = T(\mathbf{x})$$ w.r.t $$
     $$
     \begin{split}
         g(\mu) & = E_{\mu}[T(\mathbf{x})] \\
-        & \overset{def}{=} \frac{1}{n}\sum_{i=1}^{n} \underbrace{\int_{-\infty}^{+\infty} x_i f(x_i; \mu, \sigma^2)dx_i}_{(\star)} \\
-        & = \frac{1}{n}\sum_{i=1}^{n} \mu \\ 
+        & \overset{def}{=} \frac{1}{N}\sum_{i=1}^{N} \underbrace{\int_{-\infty}^{+\infty} x_i f(x_i; \mu, \sigma^2)dx_i}_{(\star)} \\
+        & = \frac{1}{N}\sum_{i=1}^{N} \mu \\ 
         & \text{(The expected value of a variable } x \sim \mathcal{N}(\mu, \sigma^2) \text{ is equal to } \mu \text{)} = \mu 
     \end{split} \tag{9}
     $$
@@ -464,28 +464,28 @@ $$(8), (9) \Rightarrow$$
     $$
     \begin{split}
         Var(T(\mathbf{x})) & \geqslant \frac{g'(\mu)^2}{I(\mu)} \\
-        \Leftrightarrow Var(\frac{\sum_{i=1}^{n}x_i}{n}) & \geqslant \frac{1}{\frac{n}{\sigma^2}} \\
-        \Leftrightarrow \frac{1}{n^2}Var(\sum_{i=1}^{n}x_i) & \geqslant \frac{\sigma^2}{n} \\
-        \Leftrightarrow \frac{\sigma^2}{n} & \geqslant \frac{\sigma^2}{n} \\
+        \Leftrightarrow Var(\frac{\sum_{i=1}^{N}x_i}{N}) & \geqslant \frac{1}{\frac{N}{\sigma^2}} \\
+        \Leftrightarrow \frac{1}{N^2}Var(\sum_{i=1}^{N}x_i) & \geqslant \frac{\sigma^2}{N} \\
+        \Leftrightarrow \frac{\sigma^2}{N} & \geqslant \frac{\sigma^2}{N} \\
     \end{split} 
     $$
 </center>
 $$\Rightarrow$$ The estimator $$\hat{\mu}$$ of $$\mu$$ attains CRLB.
 
-### CRLB for the estimator of $$\sigma^2$$: $$\hat{\sigma}^2 = s^2 = \frac{\sum_{i=1}^{n}(x_i - \bar{x})^2}{n-1}$$
+### CRLB for the estimator of $$\sigma^2$$: $$\hat{\sigma}^2 = s^2 = \frac{\sum_{i=1}^{N}(x_i - \bar{x})^2}{N-1}$$
 
 $$\cdot
     \begin{cases}
-    \frac{dl(\mu, \sigma^2; \mathbf{x})}{d\sigma^2} = -\frac{n}{2\sigma^2} + \frac{\sum_{i=1}^{n}(x_i - \mu)^2}{2(\sigma^2)^2} \\
-    \frac{d^2l(\mu, \sigma^2; \mathbf{x})}{d(\sigma^2)^2} = \frac{n}{2(\sigma^2)^2} - \frac{\sum_{i=1}^{n}(x_i-\mu)^2}{(\sigma^2)^3} \\
+    \frac{dl(\mu, \sigma^2; \mathbf{x})}{d\sigma^2} = -\frac{N}{2\sigma^2} + \frac{\sum_{i=1}^{N}(x_i - \mu)^2}{2(\sigma^2)^2} \\
+    \frac{d^2l(\mu, \sigma^2; \mathbf{x})}{d(\sigma^2)^2} = \frac{N}{2(\sigma^2)^2} - \frac{\sum_{i=1}^{N}(x_i-\mu)^2}{(\sigma^2)^3} \\
     E[\hat{\sigma}^2] = g(\sigma^2) = \sigma^2
     \end{cases}
   $$
 <center>
     $$
     \begin{split}
-    \Rightarrow I(\sigma^2) & = E[-\frac{d^2l(\mu, \sigma^2; \mathbf{x})}{d(\sigma^2)^2}] = -E[\frac{n}{2(\sigma^2)^2} - \frac{\sum_{i=1}^{n}(x_i-\mu)^2}{(\sigma^2)^3}] = -\frac{n}{2(\sigma^2)^2} + \frac{E[\sum_{i=1}^{n}(x_i-\mu)^2]}{(\sigma^2)^3} \\
-    & = -\frac{n}{2(\sigma^2)^2} + \frac{n\sigma^2}{(\sigma^2)^3} = \frac{n}{2(\sigma^2)^2}
+    \Rightarrow I(\sigma^2) & = E[-\frac{d^2l(\mu, \sigma^2; \mathbf{x})}{d(\sigma^2)^2}] = -E[\frac{N}{2(\sigma^2)^2} - \frac{\sum_{i=1}^{N}(x_i-\mu)^2}{(\sigma^2)^3}] = -\frac{N}{2(\sigma^2)^2} + \frac{E[\sum_{i=1}^{N}(x_i-\mu)^2]}{(\sigma^2)^3} \\
+    & = -\frac{N}{2(\sigma^2)^2} + \frac{N\sigma^2}{(\sigma^2)^3} = \frac{N}{2(\sigma^2)^2}
     \end{split}
     $$
 </center>
@@ -494,16 +494,16 @@ According to CRLB definition:<br>
     $$
     \begin{split}
         Var(s^2) \geqslant \frac{(g'(\sigma^2))^2}{I(\sigma^2)} \\
-        \Leftrightarrow Var(s^2) \geqslant \frac{2(\sigma^2)^2}{n}
+        \Leftrightarrow Var(s^2) \geqslant \frac{2(\sigma^2)^2}{N}
     \end{split}\tag{10}
     $$
 </center>
-* Note that the term $$\frac{(n-1)s^2}{\sigma^2} \sim \chi_{n-1} \Rightarrow Var(\frac{(n-1)s^2}{\sigma^2}) = \frac{(n-1)^2}{(\sigma^2)^2}Var(s^2) = 2(n-1)$$<br>
-<center>$$\Rightarrow Var(s^2) = \frac{2(\sigma^2)^2}{n-1} \tag{11}$$</center>
+* Note that the term $$\frac{(N-1)s^2}{\sigma^2} \sim \chi_{N-1} \Rightarrow Var(\frac{(N-1)s^2}{\sigma^2}) = \frac{(N-1)^2}{(\sigma^2)^2}Var(s^2) = 2(N-1)$$<br>
+<center>$$\Rightarrow Var(s^2) = \frac{2(\sigma^2)^2}{N-1} \tag{11}$$</center>
 $$(10), (11) \Rightarrow$$
 <center>
     $$
-    \frac{2(\sigma^2)^2}{n-1} \gt \frac{2(\sigma^2)^2}{n}
+    \frac{2(\sigma^2)^2}{N-1} \gt \frac{2(\sigma^2)^2}{N}
     $$
 </center><br>
 Hence, $$\hat{\sigma}^2 = s^2$$ does NOT attain CRLB even it is the unbiased estimator.
@@ -523,20 +523,20 @@ Mathematically, the form of Linear Model could be defined as
     $$
 </center>
 where,
-<center>$$\mathbf{y} = \begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n\end{pmatrix}_{nx1}$$</center><br>
+<center>$$\mathbf{y} = \begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_N\end{pmatrix}_{N \times 1}$$</center><br>
 <center>
         $$\mathbf{X} = 
         \begin{pmatrix} 
             1 & \phi_1(\mathbf{x}_1) & \phi_2(\mathbf{x}_1) & \cdots & \phi_d(\mathbf{x}_1) \\ 
             1 & \phi_1(\mathbf{x}_2) & \phi_2(\mathbf{x}_2) & \cdots & \phi_d(\mathbf{x}_2) \\
             \vdots & &  & \ddots \\
-            1 & \phi_1(\mathbf{x}_n) & \phi_2(\mathbf{x}_n) & \cdots & \phi_d(\mathbf{x}_n)
-        \end{pmatrix}_{nx(d+1)}
+            1 & \phi_1(\mathbf{x}_n) & \phi_2(\mathbf{x}_n) & \cdots & \phi_d(\mathbf{x}_N)
+        \end{pmatrix}_{N \times (d+1)}
         $$
 </center><br>
-<center>$$\boldsymbol\beta = \begin{pmatrix} \beta_0 \\ \beta_1 \\ \beta_2 \\ \vdots \\ \beta_d \end{pmatrix}_{(d+1)x1}$$</center><br>
+<center>$$\boldsymbol\beta = \begin{pmatrix} \beta_0 \\ \beta_1 \\ \beta_2 \\ \vdots \\ \beta_d \end{pmatrix}_{(d+1) \times 1}$$</center><br>
 
-$$n$$ is the number of observations and $$d$$ is the number of parameters/predictors of this model.<br>
+$$N$$ is the number of observations and $$d$$ is the number of parameters/predictors of this model.<br>
 $$\phi_j(\mathbf{x}_i)$$ is the jth basis function which takes the ith observation as the input.<br>
 For every $$x_{i\cdot}$$, it could be understood as the ith observation.<br><br>
 * A typical example of Linear Model is Polynomial regression. For instance, $$y = \beta_0 + \beta_1x + \beta_2x^2 + \beta_3x^3 + \ldots + \beta_dx^d$$. Note that this formula is only accountable for one realization at a time<br>
@@ -578,25 +578,31 @@ where,
 </center>
 For simplicity, we shall treat the noise of all records follows an isotropic Gaussian distribution. That is, $$\boldsymbol\epsilon \sim \mathcal{N}(\mathbf{0}, \sigma^2\mathbf{I})$$ (e.g. every record has the same variance $$\sigma^2$$ and independent from each other).<br>
 
-Moving onto probabilistic approach, given a training data set comprising N observations {$$x_n$$} associated with the outcomes {$$y_n$$}. The goal is to build a predictive model given predictors $$\mathbf{x}$$ for observations only; in other words, we would like to construct the predictive conditional distribution<br><br>
-<center>$$f(y_{new}|\mathbf{x}_{new}, \mathbf{X}_{train}, \mathbf{y}_{train})$$</center><br>
-It is worth mentioning that the noise of data follows a multivariate Normal distribution based on the definition of Normal Linear Model, the outcome of observations $$\mathbf{Y}$$ therefore a linear transformation of $$\mathcal{N}(\mathbf{0}, \Sigma)$$ which is also a multivatiate Normal distribution with mean $$\mathbf{X}\boldsymbol\beta$$ and covariance matrix $$\sigma^2\mathbf{I}$$. Hence, the conditional distribution of $$\mathbf{y}$$ given $$\mathbf{X}$$ & $$\boldsymbol\beta$$ could be defined as<br><br>
+Moving onto MLE approach, given a training data set with $$N$$ observations in which each observation $$i$$ has its feature vector $$\boldsymbol\phi(\mathbf{x}_i)$$ associated with an outcome $$y_i$$. The goal is to find the most sensible set of parameters $$\boldsymbol\beta$$ and $$\sigma^2$$ associated with the model and the data repsectively that maximizes the likelihood functions for all given data points. In other words, we wish to find<br><br>
 <center>
     $$
-    f(\mathbf{y}|\boldsymbol\beta, \mathbf{X}, \sigma^2) = (2\pi\sigma^2)^{-\frac{n}{2}}exp\{-\frac{(\mathbf{y} - \mathbf{X}\boldsymbol\beta)^{T}(\mathbf{y} - \mathbf{X}\boldsymbol\beta)}{2\sigma^2}\}
+    \underset{\boldsymbol\theta, \sigma^2}{\text{argmax}}\space \prod_{i=1}^N L(\boldsymbol\beta, \sigma^2 | \boldsymbol\phi(\mathbf{x}_i), y_i)
     $$
 </center><br>
-With regards to MLE setting, the objective of constructing the predictive conditional distribution $$f(y_{new}|\mathbf{x}_{new}, \mathbf{X}_{train}, \mathbf{y}_{train})$$ is analogous to maximizing the conditional distribution of $$f(\mathbf{y}|\boldsymbol\beta, \mathbf{X}, \sigma^2)$$. Mathematically speaking,
+It is worth mentioning that the noise of data follows a multivariate Normal distribution based on the definition of Normal Linear Model, the outcomes of observations $$\mathbf{y} = \begin{pmatrix} y_1 \\ \vdots \\ y_N \end{pmatrix}$$ are therefore the linear transformation of $$\mathcal{N}(\mathbf{0}, \sigma^2\mathbf{I})$$, which also can be modelled as a multivatiate Normal distribution with mean $$\mathbf{X}\boldsymbol\beta$$ and covariance matrix $$\sigma^2\mathbf{I}$$, where $$\mathbf{X} = \begin{pmatrix} \boldsymbol\phi(\mathbf{x}_1)^T \\ \vdots \\ \boldsymbol\phi(\mathbf{x}_N)^T \end{pmatrix}$$. Hence, the product of likelihood functions of the data can also be defined as<br><br>
+<center>
+    $$
+    f(\mathbf{y}|\boldsymbol\beta, \mathbf{X}, \sigma^2) = (2\pi\sigma^2)^{-\frac{N}{2}}exp\{-\frac{(\mathbf{y} - \mathbf{X}\boldsymbol\beta)^{T}(\mathbf{y} - \mathbf{X}\boldsymbol\beta)}{2\sigma^2}\}
+    $$
+</center><br>
+
+Note that the logarithm function is a non-decreasing function; therefore, maximizing the logarithm of $$f(\mathbf{y}|\boldsymbol\beta, \mathbf{X}, \sigma^2)$$ is equivalent to maximizing the likelihood function itself. Mathematically speaking,
 <center>
     $$
     \begin{split}
-    \underset{\boldsymbol\beta}{argmax}f(\mathbf{y}|\boldsymbol\beta, \mathbf{X}) & = \underset{\boldsymbol\beta}{argmax} \space (2\pi\sigma^2)^{-\frac{n}{2}}exp\{-\frac{(\mathbf{y} - \mathbf{X}\boldsymbol\beta)^{T}(\mathbf{y} - \mathbf{X}\boldsymbol\beta)}{2\sigma^2}\} \\
-    & = \underset{\boldsymbol\beta}{argmin}\frac{(\mathbf{y} - \mathbf{X}\boldsymbol\beta)^{T}(\mathbf{y} - \mathbf{X}\boldsymbol\beta)}{2\sigma^2} \\
-    & = \underbrace{\underset{\boldsymbol\beta}{argmin} \frac{(\mathbf{y} - \mathbf{X}\boldsymbol\beta)^{T}(\mathbf{y} - \mathbf{X}\boldsymbol\beta)}{2}}_{(12)}
+        \underset{\boldsymbol\beta, \sigma^2}{\text{argmax }} f(\mathbf{y}|\boldsymbol\beta, \mathbf{X}, \sigma^2) &= \underset{\boldsymbol\beta, \sigma^2}{\text{argmax }} \ln(f(\mathbf{y}|\boldsymbol\beta, \mathbf{X}, \sigma^2)) \\
+        &= \underbrace{
+            \underset{\boldsymbol\beta, \sigma^2}{\text{argmax }} \frac{N}{2}\ln(\frac{1}{\sigma^2}) -\frac{(\mathbf{y} - \mathbf{X}\boldsymbol\beta)^{T}(\mathbf{y} - \mathbf{X}\boldsymbol\beta)}{2\sigma^2}
+         }_{(12)} \\
     \end{split}
     $$
 </center><br>
-To find the value of $$\boldsymbol\beta$$ that minimizes $$(12)$$, setting the derivative of $$(12)$$ w.r.t $$\boldsymbol\beta$$ to $$\mathbf{0}$$ and solving for $$\boldsymbol\beta$$ is one of the most intuitive way. More precisely, define
+To find the value of $$\boldsymbol\beta$$ that maximizes $$(12)$$, setting the derivative of $$(12)$$ w.r.t $$\boldsymbol\beta$$ to $$\mathbf{0}$$ and solving for $$\boldsymbol\beta$$ is one of the most intuitive way. More precisely, define
 <br><br>
 <center>
     $$
@@ -606,14 +612,13 @@ To find the value of $$\boldsymbol\beta$$ that minimizes $$(12)$$, setting the d
     $$
 </center>
 where, <br>
-$$\hskip{5em} L_D(\boldsymbol\beta) = \frac{1}{2}\sum_{i=1}^{n}(y_i - \boldsymbol\beta^T\boldsymbol\phi(\mathbf{x}_i))^2$$ <br><br>
-$$\hskip{5em}$$ is called the sum-of-squares error function which is the summation of squares error between $$\mathbf{y}$$ & $$\mathbf{X}\boldsymbol\beta$$ over all given data points in $$D$$.
+$$\hskip{5em} L_D(\boldsymbol\beta) = \frac{1}{2}\sum_{i=1}^{N}(y_i - \boldsymbol\beta^T\boldsymbol\phi(\mathbf{x}_i))^2$$ is the summation of squares error between $$\mathbf{y}$$ & $$\mathbf{X}\boldsymbol\beta$$ over all given data points in $$D$$
 <br><br>
 $$\hskip{5em} \boldsymbol\phi(\mathbf{x}_i) = \begin{pmatrix} \phi_1(\mathbf{x}_i) \\ \phi_2(\mathbf{x}_i) \\ \vdots \\ \phi_d(\mathbf{x}_i) \end{pmatrix} \space$$ is the vector of basis functions
 <br><br>
 Note that the function $$L_D(\boldsymbol\beta)$$ is of the form of the least squares function. Therefore, it is equivalent to say that searching for optimal parameters by MLE approach is similar to optimizing parameters by least squares method. 
 
-Another way to obtain optimal $$\boldsymbol\beta$$ for $$L_D(\boldsymbol\beta)$$ is to tackle this problem by geometry argument. Specifically, we want to find $$\boldsymbol\beta$$ such that $$\mathbf{X}\boldsymbol\beta$$ is as close to $$\mathbf{y}$$ as possible with fixed $$\mathbf{X}$$. In geometrical perspective, the closest $$\mathbf{X}\boldsymbol\beta$$ to $$\mathbf{y}$$ is indeed the the projection of $$\mathbf{y}$$ onto the vector space $$\mathbf{X}$$. For the ease of interpretation, the image below illustrates why $$\mathbf{X}\boldsymbol\beta = \text{proj}_{\mathbf{X}}(\mathbf{y})$$ is the closest distance between $$\mathbf{y}$$ and $$\mathbf{X}\boldsymbol\beta$$.
+Another way to obtain the optimal $$\boldsymbol\beta$$ for $$L_D(\boldsymbol\beta)$$ is to view this problem in terms of a geometry argument. Specifically, we want to find $$\boldsymbol\beta$$ such that $$\mathbf{X}\boldsymbol\beta$$ is as close to $$\mathbf{y}$$ as possible with fixed $$\mathbf{X}$$. In geometrical perspective, the closest $$\mathbf{X}\boldsymbol\beta$$ to $$\mathbf{y}$$ is indeed the the projection of $$\mathbf{y}$$ onto the vector space $$\mathbf{X}$$. For the ease of interpretation, the image below illustrates why $$\mathbf{X}\boldsymbol\beta = \text{proj}_{\mathbf{X}}(\mathbf{y})$$ is the closest distance between $$\mathbf{y}$$ and $$\mathbf{X}\boldsymbol\beta$$.
 
 $$\hskip{10em}$$![projection-of-y-onto-subspace-x](/blog/assets/mle_projection_of_y_onto_subspace_x.png)<br>
 <div style="display:block; text-align:center">
@@ -629,6 +634,16 @@ Consequently, the solution for $$\mathbf{X}\boldsymbol\beta$$, where $$L_D(\bold
     $$
 </center><br>
 $$\rightarrow$$ If $$\mathbf{h}$$ is used as the solution for $$\boldsymbol\beta$$, this result is equivalent to $$\boldsymbol\beta_{\text{MLE}}$$ acquired via solving $$\nabla L_D(\boldsymbol\beta) = \mathbf{0}$$ for $$\boldsymbol\beta$$.
+<br><br>
+Next, to optimize for $$\sigma^2$$, setting the derivative of $$(12)$$ w.r.t $$\frac{1}{\sigma^2}$$ to 0 and solving for $$\frac{1}{\sigma^2}$$ results in:<br><br>
+<center>
+    $$
+    \begin{split}
+        \frac{\partial \ln(f(\mathbf{y}|\boldsymbol\beta, \mathbf{X}, \sigma^2))}{\partial \sigma^{-2}} &= \frac{N\sigma^2}{2} - \frac{(\mathbf{y} - \mathbf{X}\boldsymbol{\beta})^T(\mathbf{y} - \mathbf{X}\boldsymbol{\beta})}{2} = 0\\
+        \Leftrightarrow \sigma^2 &= \frac{1}{N} (\mathbf{y} - \mathbf{X}\boldsymbol{\beta})^T(\mathbf{y} - \mathbf{X}\boldsymbol{\beta}) = \frac{1}{N}\sum_{i=1}^N (y_i - \boldsymbol{\phi}(\mathbf{x}_i)^T\boldsymbol{\beta})^2
+    \end{split}
+    $$
+</center>
 
 ### Regularized least squares
 
@@ -646,7 +661,7 @@ Generally, the regularizer takes the form<br>
 $$\rightarrow$$ Since the regularizer depends on the value of $$\lambda$$; hence, minimizing $$(13)$$ is identical to finding values for $$\boldsymbol\beta$$ to reduce the influence of $$\lambda$$ in order to make the whole expression as minimal as possible. For example, the loss function could be <br><br>
 <center>
     $$
-    \boldsymbol\beta = \underset{\boldsymbol\beta}{argmin} \space \frac{1}{2}\sum_{i=1}^{n}(y_i - [\beta_0 + \beta_1\phi_1(\mathbf{x_i}) + \beta_2\phi_2(\mathbf{x_i})])^2 + \underbrace{10^4(\beta_0^2 + \beta_1^2 + \beta_2^2)}_{(\ast)} \\
+    \boldsymbol\beta = \underset{\boldsymbol\beta}{argmin} \space \frac{1}{2}\sum_{i=1}^{N}(y_i - [\beta_0 + \beta_1\phi_1(\mathbf{x_i}) + \beta_2\phi_2(\mathbf{x_i})])^2 + \underbrace{10^4(\beta_0^2 + \beta_1^2 + \beta_2^2)}_{(\ast)} \\
     {\text{(Need to work on choosing } \boldsymbol\beta \text{ to make } (\ast) \text{ as small as possible)}}
     $$
 </center><br>
@@ -665,7 +680,7 @@ $$\rightarrow$$ Setting the the gradient of the equation $$(14)$$ to $$\mathbf{0
      \Rightarrow \boldsymbol\beta_{\text{MLE}} = (\lambda\mathbf{I} + \mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T
      $$
 </center><br>
-In fact, the method of searching for the optimal solution for $$(14)$$ is similar to using Lagrange multipliers for maximizing/minimizing the function $$L_D(\boldsymbol\beta)$$ subject to the constraint $$\sum_{i=1}^{n}|\beta_i|^q \leqslant \eta$$ for an appropriate value of the parameter $$\eta$$. <br><br>
+In fact, the method of searching for the optimal solution for $$(14)$$ is similar to using Lagrange multipliers for maximizing/minimizing the function $$L_D(\boldsymbol\beta)$$ subject to the constraint $$\sum_{i=1}^{N}|\beta_i|^q \leqslant \eta$$ for an appropriate value of the parameter $$\eta$$. <br><br>
 That's enough for maths. Let's work on an example to see how regularization helps MLE approach avoid overfitting problem!
 
 ```python
