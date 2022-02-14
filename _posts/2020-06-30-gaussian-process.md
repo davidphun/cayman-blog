@@ -524,7 +524,7 @@ mu_s, cov_s = posterior_predictive(X_test, X_train, Y_train, l=l_opt, sigma_f=si
 plot_gp(mu_s, cov_s, X_test, X_train=X_train, Y_train=Y_train)
 ````
 
-![GPs with tunned hyperparameters for kernel](/blog/assets/gp_kernel_hyperparams_trials.png)
+![GPs with tunned hyperparameters for kernel](/blog/assets/gp_prediction_with_tunned_hyperparams.png)
 
 ### Higher dimensions implementation
 In this section, higher-dimension input data (2D input data expanded in x-y plane in this case) will be used as the input for GPs to fit the outcome that is actually came from a sine wave originating at 0 with noise added.
