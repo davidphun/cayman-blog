@@ -185,9 +185,13 @@ Hence, the marginal distribution of $$X$$ is the integral of the product of thes
 </center>
 Simplify $$BA^{-1}$$ & $$A^{-1}$$ and map
 <center>
-  $$a=\mathbf{K}_*^T \mathbf{K}_f^{-1}$$
-  $$\sigma_{x|y}^2=\boldsymbol{\Sigma}_{\mathbf{f}^*|\mathbf{f}}$$
-  $$\sigma_x^2=\boldsymbol{\Lambda}$$
+  $$
+  \begin{split}
+    a &= \mathbf{K}_*^T \mathbf{K}_f^{-1} \\
+    \sigma_{x|y}^2 &=\boldsymbol{\Sigma}_{\mathbf{f}^*|\mathbf{f}} \\
+    \sigma_y^2 &=\boldsymbol{\Lambda} \\
+  \end{split}
+  $$
 </center>
 The result should be accordance to $$\text{(7)}$$ and $$\text{(8)}$$.
 
